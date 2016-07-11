@@ -1,47 +1,17 @@
 [
 	{
 		"id": 1,
-		"name": "HUP Neurovascular",
-		"service_names": ["Medicine HUP, Neurovascular A", "Medicine HUP, Neurovascular B", "Medicine HUP, Neurovascular C"]
+		"name": "List A",
+		"service_names": ["Cohort A"]
 	},
 	{
 		"id": 2,
-		"name": "HUP Neuro Ward",
-		"service_names": ["Medicine HUP, Neuro Ward A-1", "Medicine HUP, Neuro Ward A-2"]
+		"name": "List B",
+		"service_names": ["Cohort B"]
 	},
 	{
 		"id": 3,
-		"name": "HUP Neuro Consults",
-		"service_names": ["Medicine HUP, Neuro Consults A", "Medicine HUP, Neuro Consults B", "Medicine HUP, Neuro Consults C"]
-	},
-	{
-		"id": 6,
-		"name": "HUP Neuro EMU",
-		"service_names": ["Medicine HUP, Neuro EMU"]
-	},
-	{
-		"id": 4,
-		"name": "PMC Neuro Consults",
-		"service_names": ["Medicine PMC, Neurology Consult"]
-	},
-	{
-		"id": 5,
-		"name": "PMC Neurocritical (Neuro)",
-		"service_names": ["Medicine PMC, Neurocritical Care"]
-	},
-	{
-		"id": 7,
-		"name": "PAH Neuro All",
-		"service_names": ["Medicine PAH, Neurology A-1", "Medicine PAH, Neurology A-2"]
-	},
-	{
-		"id": 8,
-		"name": "PAH Neuro Service",
-		"service_names": ["Medicine PAH, Neurology A-1"]
-	},
-	{
-		"id": 9,
-		"name": "PAH Neuro Consults",
-		"service_names": ["Medicine PAH, Neurology A-2"]
+		"name": "List C",
+		"service_names": ["Cohort C"]
 	}
 ]

@@ -1,6 +1,8 @@
 # Introduction
-This is a starter template that is Heroku-ready and include the following stack
+This is a tool used by medical teams to manage their populations, keep task lists, and generate progress notes.
 
+
+# Specifications
 ## Server side
 * Rails 4.2.4
 * Mongodb

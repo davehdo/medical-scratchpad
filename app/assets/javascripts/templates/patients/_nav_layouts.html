@@ -1,0 +1,7 @@
+<ul class="nav nav-tabs hidden-print">
+	<li><a ng-show="Cohort.active" href="#/cohorts/{{ Cohort.active.id }}">List</a></li>
+	<li><a ng-show="Cohort.active" href="#/cohorts/{{ Cohort.active.id }}/covering">Covering</a></li>
+	<li><a ng-show="Patient.active" href="#/patients/{{ Patient.active.id }}/admitting">H&amp;P</a></li>
+	<li><a ng-show="Patient.active" href="#/patients/{{ Patient.active.id }}/progressing">Progress</a></li>
+	<li><a ng-show="Patient.active" href="#/patients/{{ Patient.active.id }}/discharging">Discharging</a></li>
+</ul>

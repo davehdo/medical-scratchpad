@@ -1,0 +1,17 @@
+<div class="row">
+	<div class="col-xs-6">
+		<div>Patient Name: {{ patient.name }}</div>
+		<div>MRN: {{ patient.mrn() }}</div>
+		<div>DOB: {{ patient.dob().format('MM/DD/YYYY') }} ({{ patient.age() }}{{ patient.gender() }})</div>
+		<div>Admission Date: {{ patient.admittedAt().format("MM/DD/YYYY") }}</div>
+		<div>Location: {{ patient.location }}</div>
+
+	</div><!-- /col -->
+	
+	<div class="col-xs-6">
+		<div>Date: {{ moment().format("dddd, MMMM Do YYYY, h:mm:ss a") }}</div>
+		<div>Primary Service: {{ patient.service() }}</div>
+		<div>Attending: {{ patient.attending() }}</div>
+	</div><!-- /col -->
+
+</div><!-- /row -->	

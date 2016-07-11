@@ -1,0 +1,106 @@
+<div class="alert alert-warning" ng-show="flash.getMessage()">
+    <p>{{flash.getMessage()}}</p>
+</div>
+
+<div ng-include="'patients/_nav_layouts.html'"></div>
+
+<div class="pull-right">
+	<h3>
+		<a href="/#/patients/{{ patient.id }}/admitting_preview"><i class="fa fa-search"></i></a>
+		<a href="/#/patients/{{ patient.id }}/admitting_preview"><i class="fa fa-print"></i></a>
+		
+	</h3>
+</div>
+
+<h3>{{ patient.name }} / Admitting</h3>
+
+<div class="row">
+	<div class="col-sm-8">
+		<div class="form-group">
+			<label>HPI</label><br />
+			<textarea class="form-control" ng-model="patient.doc.history_of_present_illness" ng-blur="save(patient)" rows="14"></textarea>
+		</div>
+
+
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="form-group">
+					<label>PMH</label><br />
+					<textarea class="form-control" ng-model="patient.doc.past_medical_history" ng-blur="save(patient)" rows="8"></textarea>
+				</div>	
+			</div><!-- /col -->
+			
+			<div class="col-sm-4">				
+				<div class="form-group">
+					<label>Medications</label><br />
+					<textarea class="form-control" ng-model="patient.doc.medications" ng-blur="save(patient)" rows="8"></textarea>
+				</div>
+			</div><!-- /col -->
+
+			<div class="col-sm-4">
+				<div class="form-group">
+					<label>FH</label><br />
+					<textarea class="form-control" ng-model="patient.doc.family_history" ng-blur="save(patient)"></textarea>
+				</div>
+
+				<div class="form-group">
+					<label>SH</label><br />
+					<textarea class="form-control" ng-model="patient.doc.social_history" ng-blur="save(patient)"></textarea>
+				</div>
+
+				<div class="form-group">
+					<label>Emergency Contact
+					<input type="text" class="form-control" ng-model="patient.doc.emergency_contact" ng-blur="save(patient)"></input></label>
+				</div>
+				
+
+			</div><!-- /col -->
+			
+		</div><!-- /row -->
+
+
+
+		
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="form-group">
+					<label>Exam</label><br />
+					<textarea class="form-control" ng-model="patient.doc.exam" ng-blur="save(patient)" rows="5"></textarea>
+				</div>
+
+			</div><!-- /col -->
+			
+			<div class="col-sm-6">				
+				<div class="form-group">
+					<label>Data</label><br />
+					<textarea class="form-control" ng-model="patient.doc.data" ng-blur="save(patient)" rows="5"></textarea>
+				</div>
+
+			</div><!-- /col -->
+		</div><!-- /row -->
+		
+		
+
+		<div class="form-group">
+			<label>One-liner</label><br />
+			<textarea class="form-control" ng-model="patient.doc.one_liner" ng-blur="save(patient)" ></textarea>
+		</div>
+
+
+		<div class="form-group">
+			<label>Plan</label><br />
+			<textarea class="form-control" ng-model="patient.doc.assessment_and_plan" ng-blur="save(patient)" rows="14"></textarea>
+		</div>
+
+		
+	</div><!-- /col -->
+	<div class="col-sm-4">
+		<div class="well">
+			<div ng-include="'patients/_checklist_guidance_panel.html'"></div>
+			
+			
+		</div>
+	</div><!-- /col -->
+</div>
+
+

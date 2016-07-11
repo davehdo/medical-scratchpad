@@ -1,0 +1,11 @@
+<div class="alert alert-warning" ng-show="flash.getMessage()">
+    <p>{{flash.getMessage()}}</p>
+</div>
+
+<h3>Editing {{ patient.name }}</h3>
+
+<div ng-render="patients/_form.html"></div>
+
+
+<a href="#/cohorts">Back</a>
+

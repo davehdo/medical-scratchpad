@@ -1,0 +1,60 @@
+<div class="alert alert-warning hidden-print" ng-show="flash.getMessage()">
+    <p>{{flash.getMessage()}}</p>
+</div>
+
+<div ng-include="'patients/_nav_layouts.html'" class="hidden-print"></div>
+
+<div class="pull-right hidden-print">
+	<h3>
+		<a href="/#/patients/{{ patient.id }}/admitting"><i class="fa fa-edit"></i></a>
+	</h3>
+</div>
+
+
+<div class="row">
+	<div class="col-sm-8">
+		<h3>History and Physical</h3>
+		<div ng-include="'patients/_patient_header.html'"></div>
+		
+		
+		<h4>History of Present Illness</h4>
+		<div style="white-space: pre-wrap;">{{ patient.doc.history_of_present_illness }}</div>
+
+		<h4>Past Medical History</h4>
+		<div style="white-space: pre-wrap;">{{ patient.doc.past_medical_history }}</div>
+
+		<h4>Medications</h4>
+		<div style="white-space: pre-wrap;">{{ patient.doc.medications }}</div>
+
+		<h4>Family History</h4>
+		<div style="white-space: pre-wrap;">{{ patient.doc.family_history }}</div>
+
+		<h4>Social History</h4>
+		<div style="white-space: pre-wrap;">{{ patient.doc.social_history }}</div>
+
+		<h4>Emergency Contact</h4>
+		<div style="white-space: pre-wrap;">{{ patient.doc.emergency_contact }}</div>
+
+
+		<h4>Exam</h4>
+		<div style="white-space: pre-wrap;">{{ patient.doc.exam }}</div>
+
+
+		<h4>Data</h4>
+		<div style="white-space: pre-wrap;">{{ patient.doc.data }}</div>
+
+		<h4>Assessment and Plan</h4>
+		<div style="white-space: pre-wrap;">{{ patient.doc.one_liner }}</div>
+		<div style="white-space: pre-wrap;">{{ patient.doc.assessment_and_plan }}</div>
+	</div><!-- /col -->
+	
+	<div class="col-sm-4 hidden-print">
+		<div class="well">
+			<div ng-include="'patients/_checklist_guidance_panel.html'"></div>
+			
+			
+		</div>
+	</div><!-- /col -->
+</div>
+
+

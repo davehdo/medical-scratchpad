@@ -1,0 +1,37 @@
+<div class="alert alert-warning" ng-show="flash.getMessage()">
+    <p>{{flash.getMessage()}}</p>
+</div>
+
+<div ng-include="'patients/_nav_layouts.html'"></div>
+
+
+<div class="row">
+	<div class="col-sm-6">
+		<div class="form-group">
+			<select class="form-control" ng-options="cohort as cohort.name for cohort in cohorts track by cohort.id" ng-model="Cohort.active" ng-change="activateCohort(Cohort.active)"></select>
+		</div><!-- form-group -->
+	</div><!-- /col -->
+	<div class="col-sm-6">
+		<div class="form-group">
+			<input type="text" class="form-control" ng-model="q" placeholder="or search by name" ng-change="search(q)"></input>
+		</div><!-- form-group -->
+	</div><!-- /col -->
+</div><!-- /row -->
+
+<p>Patients in <span ng-repeat="service_name in Cohort.active.service_names">{{service_name}} </span></p>
+
+<table class="table">
+	<tr ng-click="activate(patient)" ng-repeat="patient in patients" ng-class="isActive(patient) ? 'active' : ''">
+		<td>
+			{{ patient.location }}
+		</td>
+		<td>
+			{{ patient.name }} <a href="/#/patients/{{ patient.id }}/edit"><i class="fa fa-pencil"></i></a>
+		</td>
+		<td class="text-muted">
+			{{ patient.service_names.join(" / ") }}
+		</td>
+	</tr>
+</table>
+
+<a href="#/patients/new">New Patient</a>

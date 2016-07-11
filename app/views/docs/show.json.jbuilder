@@ -1,0 +1,2 @@
+json.extract! @doc, :one_liner, :interval_events, :checklist, :history_of_present_illness, :past_medical_history, :medications, :family_history, :social_history, :emergency_contact, :exam, :data, :assessment_and_plan, :event_archive, :plan_archive
+json.id @doc.to_param

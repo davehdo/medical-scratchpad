@@ -1,0 +1,36 @@
+<form class="form">	
+	<div class="form-group">	
+		<label class="form-label">Name</label>
+		<input type="text" ng-model="patient.fname" class="form-control" placeholder="First" />
+		<input type="text" ng-model="patient.lname" class="form-control" placeholder="Last" />
+	</div>
+
+	<div class="form-group">	
+		<label class="form-label">Location</label>
+		<input type="text" ng-model="patient.location" class="form-control" />
+	</div>
+
+
+	<div class="form-group">	
+		<label class="form-label">Patient ID</label>
+		<input type="text" ng-model="patient.patient_id" class="form-control" />
+	</div>
+
+	<div class="form-group">	
+		<label class="form-label">Visit ID</label>
+		<input type="text" ng-model="patient.visit_id" class="form-control" />
+	</div>
+
+	
+	<label class="form-label">Service Names</label>
+	<div ng-repeat="service_name in patient.service_names">
+		<div class="form-group">	
+			<input type="text" ng-model="service_name" class="form-control" />
+		</div>
+	</div>
+
+	
+	<div class="input-group">
+		<input type="submit" class="btn btn-default" ng-click="submitForm()">
+	</div>
+</form>

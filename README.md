@@ -1,6 +1,11 @@
 # Introduction
 This is a tool used by medical teams to manage their populations, keep task lists, and generate progress notes.
 
+## Screenshots
+![alt-text](https://raw.githubusercontent.com/davehdo/medical-scratchpad/master/public/Screenshot%202016-07-11%2019.12.48.png)
+![alt-text](https://raw.githubusercontent.com/davehdo/medical-scratchpad/master/public/Screenshot%202016-07-11%2019.16.47.png)
+![alt-text](https://raw.githubusercontent.com/davehdo/medical-scratchpad/master/public/Screenshot%202016-07-11%2019.17.51.png)
+![alt-text](https://raw.githubusercontent.com/davehdo/medical-scratchpad/master/public/Screenshot%202016-07-11%2019.18.08.png)
 
 # Specifications
 ## Server side

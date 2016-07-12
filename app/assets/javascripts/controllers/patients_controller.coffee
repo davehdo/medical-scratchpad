@@ -6,7 +6,7 @@ controllers.controller("PatientsIndexController", ["$scope", "$location", "Patie
 	# in case there is a flash message, pull it into scope so the view has access to it
 	$scope.flash = flash
 		
-	# just pick the first cohort and route there
+	# just pick the first cohort and forward route there
 	$scope.cohorts = Cohort.all( (cohorts) ->
 		setTimeout( $location.path( "/cohorts/#{ cohorts[0].id }" ), 10 )
 	)
@@ -117,12 +117,29 @@ controllers.controller("PatientsAdmittingController", ["$scope", "Patient", "Coh
 		Cohort.active ||= cohorts[0]
 	)
 	
+
+
 	# saves the current document and assign it to the patient if not already done
-	$scope.save = (patient) ->
-		patient.doc.save( (doc) ->
-			# assign the document to the patient if not yet assigned 
-			patient.assignDoc doc
-		)
+	# if a timeout is listed, means its "okay to wait x ms before saving"
+	# any save requests before that time are ignored UNLESS its a save request with timeout of zero
+	$scope.save = (patient, timeout) ->
+		timeout ||= 0
+		
+		if $scope.saveTimeout and timeout != 0
+			# do nothing
+
+		else # resave 
+			clearTimeout($scope.saveTimeout) if $scope.saveTimeout
+				
+			$scope.saveTimeout = setTimeout( ->
+				console.log "Saving"
+				patient.doc.save( (doc) ->
+					# assign the document to the patient if not yet assigned 
+					patient.assignDoc doc
+				)
+				# set to false so we know theres no active timer
+				$scope.saveTimeout = false
+			, timeout)
 
 ])
 

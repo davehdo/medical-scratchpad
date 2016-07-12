@@ -17,5 +17,12 @@ models.factory('Doc', ["$resource", "Model", ($resource, Model) ->
 		else # if the document is brand new, create it
 			@$save(null, callback)
 
+	Doc.prototype.storePriorValues = () ->
+		@prior_values = JSON.parse(JSON.stringify(this))
+		
+	Doc.prototype.changed = () ->
+		JSON.stringify(@prior_values) != JSON.stringify(_.omit(this, ["prior_values"]))
+
+		
 	Doc
 ])

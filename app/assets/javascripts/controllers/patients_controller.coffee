@@ -125,10 +125,7 @@ controllers.controller("PatientsAdmittingController", ["$scope", "Patient", "Coh
 	$scope.save = (patient, timeout) ->
 		timeout ||= 0
 		
-		if $scope.saveTimeout and timeout != 0
-			# do nothing
-
-		else # resave 
+		if !($scope.saveTimeout and timeout != 0)
 			clearTimeout($scope.saveTimeout) if $scope.saveTimeout
 				
 			$scope.saveTimeout = setTimeout( ->
@@ -136,6 +133,7 @@ controllers.controller("PatientsAdmittingController", ["$scope", "Patient", "Coh
 				patient.doc.save( (doc) ->
 					# assign the document to the patient if not yet assigned 
 					patient.assignDoc doc
+					doc.storePriorValues()
 				)
 				# set to false so we know theres no active timer
 				$scope.saveTimeout = false

@@ -27,7 +27,7 @@ models.factory('Patient', ["$resource", "Model", "Doc", ($resource, Model, Doc) 
 	Patient.prototype.firstOrCreateDoc = () ->	
 		if !@doc # if no active document assigned:
 			if @doc_ids and @doc_ids.length > 0
-				@doc = Doc.get({id: @doc_ids[0]}) # use get instead of find here because we want the most up-to-date
+				@doc = Doc.get({id: @doc_ids[0]}, (d) -> d.storePriorValues() ) # use get instead of find here because we want the most up-to-date
 			else
 				@doc = new Doc({one_liner: "New"})
 			

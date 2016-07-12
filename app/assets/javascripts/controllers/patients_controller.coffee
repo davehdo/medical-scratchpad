@@ -33,8 +33,9 @@ controllers.controller("CohortsShowController", ["$scope", "$location", "$routeP
 	$scope.cohorts = Cohort.all( (cohorts) ->
 		Cohort.active = Cohort.find( $routeParams.id, (cohort) ->
 			$scope.loading = true
-			$scope.patients = Patient.query({service_names: cohort.service_names.join("|")}, (patients) ->
-			
+			$scope.patients = []
+			Patient.query({service_names: cohort.service_names.join("|")}, (patients) ->
+				$scope.patients = _.sortBy( patients, (p) -> "#{p.lname}|#{p.fname}")
 				$scope.loading = false
 				Patient.active ||= patients[0] 
 			)

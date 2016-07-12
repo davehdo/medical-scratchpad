@@ -21,7 +21,7 @@ models.factory('Doc', ["$resource", "Model", ($resource, Model) ->
 		@prior_values = JSON.parse(JSON.stringify(this))
 		
 	Doc.prototype.changed = () ->
-		JSON.stringify(@prior_values) != JSON.stringify(_.omit(this, ["prior_values"]))
+		JSON.stringify(@prior_values || {}) != JSON.stringify(_.omit(this, ["prior_values"]))
 
 		
 	Doc

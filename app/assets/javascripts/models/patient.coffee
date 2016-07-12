@@ -11,9 +11,21 @@ models.factory('Patient', ["$resource", "Model", "Doc", ($resource, Model, Doc) 
 		}
 	), Model)
 	
+	Patient.prototype.assignDoc = (doc) ->
+		# assign the document to the patient if not yet assigned 
+		@doc = doc # temporarily set the active doc, however this is overwritten by update anyway
+		
+		@doc_ids ||= []
+
+		if _.indexOf( @doc_ids, doc.id ) == -1
+			@doc_ids.push( doc.id )
+			@$update( (patient ) ->
+				patient.firstOrCreateDoc()
+			)
+	
 	
 	Patient.prototype.firstOrCreateDoc = () ->	
-		if !@doc
+		if !@doc # if no active document assigned:
 			if @doc_ids and @doc_ids.length > 0
 				@doc = Doc.find( @doc_ids[0] )
 			else

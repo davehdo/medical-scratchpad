@@ -126,26 +126,14 @@ controllers.controller("PatientsAdmittingController", ["$scope", "Patient", "Coh
 	$scope.cohorts = Cohort.all( (cohorts) ->
 		Cohort.active ||= cohorts[0]
 	)
-
+	
+	# saves the current document and assign it to the patient if not already done
 	$scope.save = (patient) ->
-		if patient.doc.id # if the document is not brand new, update it
-			patient.doc.$update(null, () -> # parameters, success, error
-				# flash.setMessage "Successfully saved"
-				# console.log "saved"
-				# $location.path( "/patients/#{ $scope.patient._id }" )
-			)
-		else # if the document is brand new, create it and assign to patient
-			patient.doc.$save(null, () -> # parameters, success, error
-				flash.setMessage "Successfully created"
-				# console.log "created"
-				
-				# assign the document to the patient
-				patient.doc_ids ||= []
-				patient.doc_ids.push( patient.doc.id )
-				patient.$update()
-			) 
-	
-	
+		patient.doc.save( (doc) ->
+			# assign the document to the patient if not yet assigned 
+			patient.assignDoc doc
+		)
+
 ])
 
 

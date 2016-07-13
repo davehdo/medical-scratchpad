@@ -91,11 +91,27 @@ controllers.controller("CohortsCoveringController", ["$scope", "$routeParams", "
 	
 	
 	# saves the current document and assign it to the patient if not already done
-	$scope.save = (patient) ->
-		patient.doc.save( (doc) ->
-			# assign the document to the patient if not yet assigned 
-			patient.assignDoc doc
-		)
+	# if a timeout is listed, means its "okay to wait x ms before saving"
+	# any save requests before that time are ignored UNLESS its a save request with timeout of zero
+	$scope.save = (patient, timeout) ->
+		timeout ||= 0
+		
+		if !($scope.saveTimeout and timeout != 0)
+			clearTimeout($scope.saveTimeout) if $scope.saveTimeout
+				
+			$scope.saveTimeout = setTimeout( ->
+				if patient.doc.changed()
+					patient.doc.save( (doc) ->
+						# assign the document to the patient if not yet assigned 
+						patient.assignDoc doc
+						doc.storePriorValues()
+					)
+				# set to false so we know theres no active timer
+				$scope.saveTimeout = false
+			, timeout)
+			
+	$scope.saveIntermittently = (patient) ->
+		$scope.save( patient, 5000)
 	
 	
 ])
@@ -125,20 +141,22 @@ controllers.controller("PatientsAdmittingController", ["$scope", "Patient", "Coh
 	$scope.save = (patient, timeout) ->
 		timeout ||= 0
 		
-		if !$scope.saveTimeout or timeout == 0
+		if !($scope.saveTimeout and timeout != 0)
 			clearTimeout($scope.saveTimeout) if $scope.saveTimeout
 				
 			$scope.saveTimeout = setTimeout( ->
 				if patient.doc.changed()
-					console.log "Saving"
 					patient.doc.save( (doc) ->
 						# assign the document to the patient if not yet assigned 
 						patient.assignDoc doc
 						doc.storePriorValues()
 					)
-					# set to false so we know theres no active timer
-					$scope.saveTimeout = false
+				# set to false so we know theres no active timer
+				$scope.saveTimeout = false
 			, timeout)
+			
+	$scope.saveIntermittently = (patient) ->
+		$scope.save( patient, 5000)
 
 ])
 

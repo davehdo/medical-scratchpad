@@ -56,8 +56,17 @@ class DocsController < ApplicationController
   # PATCH/PUT /docs/1
   # PATCH/PUT /docs/1.json
   def update
+    # choose only attributes for which the prior value matches the current 
+    # value (stored in the database). Otherwise there is concern that 
+    # someone else may have updated in between
+    params[:prior_values] ||= {}
+    
+    doc_params_matching_original_value = doc_params
+      .select {|k,v| @doc.attributes[k] == params[:prior_values][k]} # choose only the ones that have matching original values
+    
+    
     respond_to do |format|
-      if @doc.update(doc_params)
+      if @doc.update(doc_params_matching_original_value)
         format.html { redirect_to @doc, notice: 'Doc was successfully updated.' }
         format.json { render :show, status: :ok, location: @doc }
       else

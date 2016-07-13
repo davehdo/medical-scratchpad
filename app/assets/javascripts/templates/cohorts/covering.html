@@ -36,20 +36,24 @@
 			<p>{{ patient.name }} <a href="/#/patients/{{ patient.id }}/edit"><i class="fa fa-pencil"></i></a></p>
 			<p>{{ patient.location }}</p>
 			<p>{{ patient.doc.emergency_contact }}</p>
+			
+			<div class="alert" ng-show="patient.doc.changed()" style="position: fixed; top: 0; right: 0; z-index: 10000;">There are unsaved changes</div>
+			
+			
 		</td>
 		
 		<td style="padding: 0px; ">
-			<textarea ng-model="patient.doc.one_liner" class="hidden-print xform-control" ng-blur="save(patient)"></textarea>
+			<textarea ng-model="patient.doc.one_liner" class="hidden-print xform-control" ng-change="saveIntermittently(patient)" ng-blur="save(patient)"></textarea>
 			<div class="visible-print-block">{{ patient.doc.one_liner }}</div>
 			
 		</td>
 		<td style="padding: 0px; ">
-			<textarea ng-model="patient.doc.interval_events" class="hidden-print xform-control" ng-blur="save(patient)"></textarea>
+			<textarea ng-model="patient.doc.interval_events" class="hidden-print xform-control" ng-change="saveIntermittently(patient)" ng-blur="save(patient)"></textarea>
 			<div class="visible-print-block">{{ patient.doc.interval_events }}</div>
 			
 		</td>
 		<td style="padding: 0px; ">
-			<textarea ng-model="patient.doc.checklist" class="hidden-print xform-control" ng-blur="save(patient)"></textarea>
+			<textarea ng-model="patient.doc.checklist" class="hidden-print xform-control" ng-change="saveIntermittently(patient)" ng-blur="save(patient)"></textarea>
 			<div class="visible-print-block">{{ patient.doc.checklist }}</div>
 		</td>
 	</tr>

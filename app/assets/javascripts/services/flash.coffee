@@ -1,6 +1,6 @@
-services = angular.module("services", [])
+services = angular.module("services")
 
-flash = services.factory("flash", ($rootScope) ->
+flash = services.factory("flash", ["$rootScope", ($rootScope) ->
 	queue = []
 	currentMessage = ""
 
@@ -9,8 +9,8 @@ flash = services.factory("flash", ($rootScope) ->
 	)
 
 	{ 
-	setMessage: (message) -> queue.push(message)
-	currentMessage: (message) -> currentMessage = message
-	getMessage: () -> currentMessage 
+		setMessage: (message) -> queue.push(message)
+		currentMessage: (message) -> currentMessage = message
+		getMessage: () -> currentMessage 
 	}
-)
+])

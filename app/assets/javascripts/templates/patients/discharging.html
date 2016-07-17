@@ -17,33 +17,33 @@
 	<div class="col-sm-8">
 		<div class="form-group">
 			<label>Event archive</label><br />
-			<textarea class="form-control" ng-model="patient.doc.event_archive" ng-change="saveIntermittently(patient)" ng-blur="save(patient)" rows="6"></textarea>
+			<textarea class="form-control" ng-model="patient.doc.event_archive" autocomplete-patient="patient" rows="6"></textarea>
 		</div>
 		
 		<div class="form-group">
 			<label>Exam</label><br />
-			<textarea class="form-control" ng-model="patient.doc.exam" ng-change="saveIntermittently(patient)" ng-blur="save(patient)"></textarea>
+			<textarea class="form-control" ng-model="patient.doc.exam" autocomplete-patient="patient" ></textarea>
 		</div>
 
 		<div class="form-group">
 			<label>Data</label><br />
-			<textarea class="form-control" ng-model="patient.doc.data" ng-change="saveIntermittently(patient)" ng-blur="save(patient)"></textarea>
+			<textarea class="form-control" ng-model="patient.doc.data" autocomplete-patient="patient" ></textarea>
 		</div>
 
 		<div class="form-group">
 			<label>One-liner</label><br />
-			<textarea class="form-control" ng-model="patient.doc.one_liner" ng-change="saveIntermittently(patient)" ng-blur="save(patient)" ></textarea>
+			<textarea class="form-control" ng-model="patient.doc.one_liner" autocomplete-patient="patient" ></textarea>
 		</div>
 
 
 		<div class="form-group">
 			<label>Plan</label><br />
-			<textarea class="form-control" ng-model="patient.doc.assessment_and_plan" ng-change="saveIntermittently(patient)" ng-blur="save(patient)" rows="10"></textarea>
+			<textarea class="form-control" ng-model="patient.doc.assessment_and_plan" autocomplete-patient="patient" rows="10"></textarea>
 		</div>
 
 		<div class="form-group">
 			<label>Plan archive (and resolved problems)</label><br />
-			<textarea class="form-control" ng-model="patient.doc.plan_archive" ng-change="saveIntermittently(patient)" ng-blur="save(patient)" rows="5"></textarea>
+			<textarea class="form-control" ng-model="patient.doc.plan_archive" autocomplete-patient="patient" rows="5"></textarea>
 		</div>
 
 		

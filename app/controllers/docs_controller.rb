@@ -61,14 +61,31 @@ class DocsController < ApplicationController
     # someone else may have updated in between
     params[:prior_values] ||= {}
     
+    # reject any key-value pairs in which the client's "prior value" does not 
+    # match the database's pre-updated value (a sign that someone else has  
+    # updated this model in the interim)
+    rejected_pairs = doc_params
+      .select {|k,v| v != params[:prior_values][k]} # first choose k-v pairs that were updated
+      .select {|k,v| @doc.attributes[k] != params[:prior_values][k]} # second, choose k-v pairs that have mismatch between client's and database's prior values
+    
+    # We don't want to lose all data, so still update the ones that changed
+    # appropriately
     doc_params_matching_original_value = doc_params
-      .select {|k,v| @doc.attributes[k] == params[:prior_values][k]} # choose only the ones that have matching original values
+      .select {|k,v| @doc.attributes[k] == params[:prior_values][k]} 
     
     
     respond_to do |format|
       if @doc.update(doc_params_matching_original_value)
-        format.html { redirect_to @doc, notice: 'Doc was successfully updated.' }
-        format.json { render :show, status: :ok, location: @doc }
+        if rejected_pairs.any?
+          rejected_pairs.each do |k,v|
+            @doc.errors.add(k, "was edited concurrently somewhere else")
+          end
+          format.html { render :edit }
+          format.json { render json: @doc.errors, status: :conflict }
+        else
+          format.html { redirect_to @doc, notice: 'Doc was successfully updated.' }
+          format.json { render :show, status: :ok, location: @doc }
+        end
       else
         format.html { render :edit }
         format.json { render json: @doc.errors, status: :unprocessable_entity }

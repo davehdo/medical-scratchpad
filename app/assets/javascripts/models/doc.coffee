@@ -39,11 +39,11 @@ models.factory('Doc', ["$resource", "Model", ($resource, Model) ->
 		@prior_values = this.attributes()
 	
 	Doc.prototype.attributes = () ->
-		JSON.parse(JSON.stringify(this))
+		JSON.parse(JSON.stringify(_.omit(this, ["prior_values"])))
 		
 	Doc.prototype.changed = () ->
 		JSON.stringify(@prior_values || {}) != JSON.stringify(_.omit(this, ["prior_values"]))
-
+		
 		
 	Doc
 ])

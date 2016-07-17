@@ -1,5 +1,8 @@
 <label>Checklist/Guidance</label><br />
-<textarea class="form-control" ng-model="patient.doc.checklist" ng-blur="save(patient)" rows="20"></textarea><br />
+<div class="form-group">
+	<textarea class="form-control" ng-model="patient.doc.checklist" autosave-patient="patient" rows="20"></textarea>
+	
+</div>
 <pre>
 Example:
 [] new task

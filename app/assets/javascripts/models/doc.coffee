@@ -17,6 +17,8 @@ models.factory('Doc', ["$resource", "Model", ($resource, Model) ->
 		else # if the document is brand new, create it
 			@$save(null, onSuccess, onErr)
 
+	# in the future it may be useful to have a "save with selective sync"
+	# to sync only fields that are not actively being typed in
 	Doc.prototype.saveWithoutSync = (onSuccess, onErr) ->
 		docOriginal = this
 		docCopy = _.clone(this)
@@ -25,8 +27,12 @@ models.factory('Doc', ["$resource", "Model", ($resource, Model) ->
 			onSuccess(docOriginal) if onSuccess
 		, onErr)
 	
-		# beware if you use the docReturned to set prior_values
-		# there is risk of overwriting whats on the server in other fields
+		# Immediately after sending the save request, should
+		# copy values to prior_values (since obj won't be overwritten by a sync).
+		# The first iteration of this waited for the latest object, docReturned,
+		# and then stored its values as prior_values, but that was flawed
+		# because it allowed risk of overwriting whats on the server in other fields
+		# that were simultaneously being edited
 		docOriginal.prior_values = docOriginal.attributes()
 	
 	Doc.prototype.storePriorValues = () ->

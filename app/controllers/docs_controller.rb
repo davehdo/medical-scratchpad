@@ -65,7 +65,7 @@ class DocsController < ApplicationController
     # match the database's pre-updated value (a sign that someone else has  
     # updated this model in the interim)
     rejected_pairs = doc_params
-      .select {|k,v| v != params[:prior_values][k]} # first choose k-v pairs that were updated
+      .select {|k,v| v != params[:prior_values][k]} # first choose k-v pairs that were #updated by the client. This is necessary because if user is sending an outdated field, we don't want to think that they deliberately changed it to be the old value
       .select {|k,v| @doc.attributes[k] != params[:prior_values][k]} # second, choose k-v pairs that have mismatch between client's and database's prior values
     
     # We don't want to lose all data, so still update the ones that changed

@@ -81,6 +81,8 @@ controllers.directive('autosavePatient', ["flash", (flash) ->
 
 
 		# if a user is actively typing and it autosaves, need to 
+		# in the future it may be useful to have a "save with selective sync"
+		# to sync only fields that are not actively being typed in
 		# use saveWithoutSync in order to prevent skipping 
 		scope.saveWithoutSync = (patient, timeout) ->
 			timeout ||= 0

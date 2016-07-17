@@ -22,10 +22,12 @@ models.factory('Doc', ["$resource", "Model", ($resource, Model) ->
 		docCopy = _.clone(this)
 	
 		docCopy.save( (docReturned) ->
-			docOriginal.prior_values = docReturned.attributes()
 			onSuccess(docOriginal) if onSuccess
 		, onErr)
 	
+		# beware if you use the docReturned to set prior_values
+		# there is risk of overwriting whats on the server in other fields
+		docOriginal.prior_values = docOriginal.attributes()
 	
 	Doc.prototype.storePriorValues = () ->
 		@prior_values = this.attributes()

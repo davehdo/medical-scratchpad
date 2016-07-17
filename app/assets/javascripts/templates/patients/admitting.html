@@ -20,7 +20,7 @@
 	<div class="col-sm-8">
 		<div class="form-group">
 			<label>HPI</label><br />
-			<textarea class="form-control" ng-model="patient.doc.history_of_present_illness" ng-change="saveIntermittently(patient)" ng-blur="save(patient)" rows="14"></textarea>
+			<textarea class="form-control " ng-model="patient.doc.history_of_present_illness" autosave-patient="patient" rows="14"></textarea>
 		</div>
 
 
@@ -28,31 +28,31 @@
 			<div class="col-sm-4">
 				<div class="form-group">
 					<label>PMH</label><br />
-					<textarea class="form-control" ng-model="patient.doc.past_medical_history" ng-change="saveIntermittently(patient)" ng-blur="save(patient)" rows="8"></textarea>
+					<textarea class="form-control" ng-model="patient.doc.past_medical_history" autosave-patient="patient" rows="8"></textarea>
 				</div>	
 			</div><!-- /col -->
 			
 			<div class="col-sm-4">				
 				<div class="form-group">
 					<label>Medications</label><br />
-					<textarea class="form-control" ng-model="patient.doc.medications" ng-blur="save(patient)" ng-change="saveIntermittently(patient)" rows="8"></textarea>
+					<textarea class="form-control" ng-model="patient.doc.medications" autosave-patient="patient" rows="8"></textarea>
 				</div>
 			</div><!-- /col -->
 
 			<div class="col-sm-4">
 				<div class="form-group">
 					<label>FH</label><br />
-					<textarea class="form-control" ng-model="patient.doc.family_history" ng-blur="save(patient)" ng-change="saveIntermittently(patient)"></textarea>
+					<textarea class="form-control" ng-model="patient.doc.family_history" autosave-patient="patient"></textarea>
 				</div>
 
 				<div class="form-group">
 					<label>SH</label><br />
-					<textarea class="form-control" ng-model="patient.doc.social_history" ng-blur="save(patient)" ng-change="saveIntermittently(patient)"></textarea>
+					<textarea class="form-control" ng-model="patient.doc.social_history" autosave-patient="patient"></textarea>
 				</div>
 
 				<div class="form-group">
 					<label>Emergency Contact
-					<input type="text" class="form-control" ng-model="patient.doc.emergency_contact" ng-blur="save(patient)" ng-change="saveIntermittently(patient)"></input></label>
+					<input type="text" class="form-control" ng-model="patient.doc.emergency_contact" autosave-patient="patient"></input></label>
 				</div>
 				
 
@@ -67,7 +67,7 @@
 			<div class="col-sm-6">
 				<div class="form-group">
 					<label>Exam</label><br />
-					<textarea class="form-control" ng-model="patient.doc.exam" ng-blur="save(patient)" ng-change="saveIntermittently(patient)" rows="5"></textarea>
+					<textarea class="form-control" ng-model="patient.doc.exam" autosave-patient="patient" rows="5"></textarea>
 				</div>
 
 			</div><!-- /col -->
@@ -75,7 +75,7 @@
 			<div class="col-sm-6">				
 				<div class="form-group">
 					<label>Data</label><br />
-					<textarea class="form-control" ng-model="patient.doc.data" ng-blur="save(patient)" ng-change="saveIntermittently(patient)" rows="5"></textarea>
+					<textarea class="form-control" ng-model="patient.doc.data" autosave-patient="patient" rows="5"></textarea>
 				</div>
 
 			</div><!-- /col -->
@@ -85,13 +85,13 @@
 
 		<div class="form-group">
 			<label>One-liner</label><br />
-			<textarea class="form-control" ng-model="patient.doc.one_liner" ng-blur="save(patient)" ng-change="saveIntermittently(patient)" ></textarea>
+			<textarea class="form-control" ng-model="patient.doc.one_liner" autosave-patient="patient"></textarea>
 		</div>
 
 
 		<div class="form-group">
 			<label>Plan</label><br />
-			<textarea class="form-control" ng-model="patient.doc.assessment_and_plan" ng-blur="save(patient)" ng-change="saveIntermittently(patient)" rows="14"></textarea>
+			<textarea class="form-control" ng-model="patient.doc.assessment_and_plan" autosave-patient="patient" rows="14"></textarea>
 		</div>
 
 		

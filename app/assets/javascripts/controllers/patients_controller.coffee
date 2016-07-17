@@ -88,32 +88,6 @@ controllers.controller("CohortsCoveringController", ["$scope", "$routeParams", "
 			)
 		)	
 	)
-	
-	
-	# saves the current document and assign it to the patient if not already done
-	# if a timeout is listed, means its "okay to wait x ms before saving"
-	# any save requests before that time are ignored UNLESS its a save request with timeout of zero
-	$scope.save = (patient, timeout) ->
-		timeout ||= 0
-		
-		if !($scope.saveTimeout and timeout != 0)
-			clearTimeout($scope.saveTimeout) if $scope.saveTimeout
-				
-			$scope.saveTimeout = setTimeout( ->
-				if patient.doc.changed()
-					patient.doc.save( (doc) ->
-						# assign the document to the patient if not yet assigned 
-						patient.assignDoc doc
-						doc.storePriorValues()
-					)
-				# set to false so we know theres no active timer
-				$scope.saveTimeout = false
-			, timeout)
-			
-	$scope.saveIntermittently = (patient) ->
-		$scope.save( patient, 5000)
-	
-	
 ])
 
 controllers.controller("PatientsAdmittingController", ["$scope", "Patient", "Cohort", "Doc", "$routeParams", "flash", ($scope, Patient, Cohort, Doc, $routeParams, flash) -> 
@@ -151,7 +125,6 @@ controllers.controller("PatientsProgressingController", ["$scope", "Patient", "C
 		Cohort.active ||= cohorts[0]
 	)
 	
-	
 ])
 
 controllers.controller("PatientsDischargingController", ["$scope", "Patient", "Cohort", "Doc", "$routeParams", "flash", ($scope, Patient, Cohort, Doc, $routeParams, flash) -> 
@@ -168,8 +141,6 @@ controllers.controller("PatientsDischargingController", ["$scope", "Patient", "C
 	$scope.cohorts = Cohort.all( (cohorts) ->
 		Cohort.active ||= cohorts[0]
 	)
-		
-	
 	
 ])
 

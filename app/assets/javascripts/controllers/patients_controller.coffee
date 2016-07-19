@@ -8,7 +8,7 @@ controllers.controller("PatientsIndexController", ["$scope", "$location", "Patie
 		
 	# just pick the first cohort and forward route there
 	$scope.cohorts = Cohort.all( (cohorts) ->
-		setTimeout( $location.path( "/cohorts/#{ cohorts[0].id }" ), 10 )
+		$location.path( "/cohorts/#{ cohorts[0].id }" )
 	)
 	
 ])

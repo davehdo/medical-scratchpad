@@ -26,10 +26,13 @@
 			{{ patient.location }}
 		</td>
 		<td>
-			{{ patient.name }} <a href="/#/patients/{{ patient.id }}/edit"><i class="fa fa-pencil"></i></a>
+			{{ patient.name }} 
 		</td>
 		<td class="text-muted">
 			{{ patient.service_names.join(" / ") }}
+		</td>
+		<td class="text-right">
+			<a href="/#/patients/{{ patient.id }}/edit"><i class="fa fa-pencil"></i></a>
 		</td>
 	</tr>
 </table>

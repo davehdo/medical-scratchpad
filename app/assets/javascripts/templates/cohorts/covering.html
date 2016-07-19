@@ -33,13 +33,12 @@
 	</tr>
 	<tr ng-class="isActive(patient) ? 'active' : ''" ng-repeat="patient in patients" ng-click="activate(patient)">
 		<td>
-			<p>{{ patient.name }} <a href="/#/patients/{{ patient.id }}/edit"><i class="fa fa-pencil"></i></a></p>
+			<a class="pull-right" href="/#/patients/{{ patient.id }}/edit"><i class="fa fa-pencil"></i></a>
+			<p>{{ patient.name }} </p>
 			<p>{{ patient.location }}</p>
 			<p>{{ patient.doc.emergency_contact }}</p>
 			
 			<div class="alert" ng-show="patient.doc.changed()" style="position: fixed; top: 0; right: 0; z-index: 10000;">There are unsaved changes</div>
-			
-			
 		</td>
 		
 		<td style="padding: 0px; ">

@@ -29,12 +29,12 @@ models.factory('Patient', ["$resource", "Model", "Doc", ($resource, Model, Doc) 
 			if @doc_ids and @doc_ids.length > 0
 				# use get instead of find here because we want the most up-to-date
 				@doc = Doc.get({id: @doc_ids[0]}, (d) -> 
-					d.storePriorValues() 
+					d.initialize() 
 					onSuccess(d) if onSuccess
 				, onError) 
 			else
 				@doc = new Doc({one_liner: "New"})
-				@doc.storePriorValues()
+				@doc.initialize()
 				onSuccess(@doc) if onSuccess
 				
 			

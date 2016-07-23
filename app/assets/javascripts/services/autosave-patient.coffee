@@ -67,10 +67,9 @@ controllers.directive('autosavePatient', ["flash", (flash) ->
 			
 			if patient.doc.changed()
 				# console.log "Immediate save with sync"
-				patient.doc.save( (doc) ->
+				patient.doc.saveAndReinitialize( (doc) ->
 					# assign the document to the patient if not yet assigned 
 					patient.assignDoc doc
-					doc.storePriorValues()
 				, (err) ->
 					patient.doc.errors = err.data
 					msg = _.map(err.data, (v,k) -> "#{k} #{v}" ).join(" and ")			

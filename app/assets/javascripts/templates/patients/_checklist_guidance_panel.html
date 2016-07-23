@@ -1,11 +1,25 @@
-<label>Checklist/Guidance</label><br />
-<div class="form-group">
-	<textarea class="form-control" ng-model="patient.doc.checklist" autosave-patient="patient" rows="20"></textarea>
+<div class="form-group" ng-dblclick="checklistExpanded = true">
+	<label>Checklist/Guidance</label><br />
+	<p>(double-click to edit text) </p>
+	<div ng-hide="checklistExpanded">
+		<div ng-repeat="lines in patient.doc.checklistParts">
+			<label>
+			<input ng-hide="lines.checked == undefined" type="checkbox" ng-model="lines.checked" ng-change="patient.doc.checklistMerge(); patient.doc.saveAndReinitialize();"/> 
+				{{ lines.text }}
+			</label>
+		</div>
+		<br />
+		<br /> <!-- some space to doubleclick-->
+	</div>
 	
-</div>
-<pre>
+	<div ng-show="checklistExpanded">
+		<textarea class="form-control" ng-blur="checklistExpanded = false" ng-change="patient.doc.checklistParse()" ng-model="patient.doc.checklist" autosave-patient="patient" rows="20"></textarea>
+	
+		<pre>
 Example:
 [] new task
 [x] completed task
 * if then
-</pre>
+		</pre>
+	</div>
+</div>

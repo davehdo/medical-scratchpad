@@ -82,7 +82,7 @@ controllers.controller("CohortsCoveringController", ["$scope", "$routeParams", "
 			# that will be filled with data when the XHR response returns
 			$scope.loading = true
 			$scope.patients = Patient.query({service_names: cohort.service_names.join("|")}, (patients) ->
-				_.each(patients, (patient) -> patient.firstOrCreateDoc())
+				_.each(patients, (patient) -> patient.fetchOrBuildActiveDoc())
 				$scope.loading = false
 				Patient.active ||= patients[0] 					
 			)
@@ -100,7 +100,7 @@ controllers.controller("PatientsAdmittingController", ["$scope", "Patient", "Coh
 
 	
 	Patient.active = $scope.patient = Patient.find( $routeParams.id, (patient) ->
-		patient.firstOrCreateDoc()
+		patient.fetchOrBuildActiveDoc()
 	)		
 			
 	$scope.cohorts = Cohort.all( (cohorts) ->
@@ -118,7 +118,7 @@ controllers.controller("PatientsProgressingController", ["$scope", "Patient", "C
 	$scope.Cohort = Cohort
 	
 	Patient.active = $scope.patient = Patient.find( $routeParams.id, (patient) ->
-		patient.firstOrCreateDoc()
+		patient.fetchOrBuildActiveDoc()
 	)		
 			
 	$scope.cohorts = Cohort.all( (cohorts) ->
@@ -135,7 +135,7 @@ controllers.controller("PatientsDischargingController", ["$scope", "Patient", "C
 	$scope.Cohort = Cohort
 	
 	Patient.active = $scope.patient = Patient.find( $routeParams.id, (patient) ->
-		patient.firstOrCreateDoc()
+		patient.fetchOrBuildActiveDoc()
 	)		
 			
 	$scope.cohorts = Cohort.all( (cohorts) ->

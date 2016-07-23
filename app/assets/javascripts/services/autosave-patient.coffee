@@ -69,7 +69,7 @@ controllers.directive('autosavePatient', ["flash", (flash) ->
 				# console.log "Immediate save with sync"
 				patient.doc.saveAndReinitialize( (doc) ->
 					# assign the document to the patient if not yet assigned 
-					patient.assignDoc doc
+					patient.appendToDocs doc
 				, (err) ->
 					patient.doc.errors = err.data
 					msg = _.map(err.data, (v,k) -> "#{k} #{v}" ).join(" and ")			
@@ -94,7 +94,7 @@ controllers.directive('autosavePatient', ["flash", (flash) ->
 						# console.log "Saving without sync"
 						patient.doc.saveWithoutSync( (doc) ->
 							# assign the document to the patient if not yet assigned 
-							patient.assignDoc doc
+							patient.appendToDocs doc
 						, (err) ->
 							patient.doc.errors = err.data
 							msg = _.map(err.data, (v,k) -> "#{k} #{v}" ).join(" and ")			

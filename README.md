@@ -1,5 +1,22 @@
 # Introduction
-This is a tool used by medical teams to manage their populations, keep task lists, and generate progress notes.
+This is an open source version of what is widely known as a 'handoff' or 'signout' tool used by medical providers. Traditionally, 'handoff tools' are of limited utility because they require duplicate data entry. This, conversely, is designed to be a tool that manages the gamut of tasks that a provider must accomplish (including admitting, covering, discharging, and handing off). 
+
+## How does this differ from an EMR?
+This is complementary to an Electronic Medical Record (EMR). An EMR contains a collection of documents that are published and part of the offical medical record. Medical scratchpad is to the EMR what a storyboard is to a movie production--designed to allow providers to jot notes, formulate plans, make reminders, and then export the final drafts into the EMR. Medical providers already do this in spreadsheets or other electronic documents that they print out before rounds and handoffs. However these are less secure with limited accessibility. 
+
+## It's a workspace and a bedside tool
+* Each view is built around a specific use case. The bedside view is mobile-optimized and has just the fields needed to record what the patient says.
+
+## A communication hub
+* Team members can collaborate effectively and eliminate redundancy by using the live TO DO list
+* Multidisciplinary teams can communicate thoughts better by sharing a live document rather than following paper trails (notes in the chart) that are updated once daily, and optimized for billing rather than medical reasoning.
+
+## A workflow manager
+* The covering view highlights each patient's to do list for easy prioritizing and batching
+* The rounding view lets users quickly review interval events and generate a list of tasks to complete for the day
+
+## Export progress notes
+* Write less, do more
 
 ## Screenshots
 ![alt-text](https://raw.githubusercontent.com/davehdo/medical-scratchpad/master/public/Screenshot%202016-07-11%2019.12.48.png)

@@ -51,9 +51,15 @@
 			<div class="visible-print-block">{{ patient.doc.interval_events }}</div>
 			
 		</td>
-		<td style="padding: 0px; ">
-			<textarea ng-model="patient.doc.checklist" class="hidden-print xform-control" autosave-patient="patient" ></textarea>
-			<div class="visible-print-block">{{ patient.doc.checklist }}</div>
+		<td style="padding: 0px; " ng-dblclick="checklistExpanded = true">
+			<div ng-hide="checklistExpanded">
+				<div ng-include="'patients/_checklist_compact.html'"></div>
+			</div>
+			<div ng-show="checklistExpanded">
+				<textarea ng-model="patient.doc.checklist" class="hidden-print" ng-blur="checklistExpanded = false" autosave-patient="patient" ></textarea>
+				<div class="visible-print-block">{{ patient.doc.checklist }}</div>
+			</div>
+			
 		</td>
 	</tr>
 	<style type="text/css" media="screen">

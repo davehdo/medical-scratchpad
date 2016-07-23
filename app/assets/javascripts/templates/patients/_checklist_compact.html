@@ -1,0 +1,6 @@
+		<div ng-repeat="lines in patient.doc.checklistParts">
+			<label>
+			<input ng-hide="lines.checked == undefined" type="checkbox" ng-model="lines.checked" ng-change="patient.doc.checklistMerge(); patient.doc.saveAndReinitialize();"/> 
+				{{ lines.text }}
+			</label>
+		</div>

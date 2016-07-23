@@ -157,7 +157,9 @@ controllers.controller("PatientsNewController", ["$scope", "$location", "Patient
 	# in case there is a flash message, pull it into scope so the view has access to it
 	$scope.flash = flash
 
-	$scope.patient = new Patient
+	long_random = Math.random().toString(36).slice(2)
+	
+	$scope.patient = new Patient(patient_id: long_random, visit_id: "#{long_random}_1")
 	
 	$scope.cohorts = Cohort.all( (cohorts) ->
 		Cohort.active ||= cohorts[0]

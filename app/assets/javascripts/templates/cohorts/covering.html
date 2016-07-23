@@ -24,44 +24,46 @@
 <p>Patients in <span ng-repeat="service_name in Cohort.active.service_names">{{service_name}} </span></p>
 
 
-<table id="covering-table" class="table table-condensed">
-	<tr>
-		<th></th>
-		<th>One-liner</th>
-		<th>Interval events</th>
-		<th>Checklist/Guidance</th>
-	</tr>
-	<tr ng-class="isActive(patient) ? 'active' : ''" ng-repeat="patient in patients" ng-click="activate(patient)">
-		<td style="width: 25%;">
-			<a class="pull-right" href="/#/patients/{{ patient.id }}/edit"><i class="fa fa-pencil"></i></a>
-			<p>{{ patient.name }} </p>
+<div id="covering-table">
+	<div class="row">
+		<div class="col-xs-3"></div>
+		<div class="col-xs-3">One-liner</div>
+		<div class="col-xs-3">Interval events</div>
+		<div class="col-xs-3">Checklist/Guidance</div>
+	</div>
+	
+	<div class="row" ng-class="isActive(patient) ? 'active' : ''" ng-repeat="patient in patients" ng-click="activate(patient)">
+		<div class="col-xs-3">
+			<a class="pull-right  hidden-print" href="/#/patients/{{ patient.id }}/edit"><i class="fa fa-pencil"></i></a>
+			<p><b>{{ patient.name }}</b></p>
 			<p>{{ patient.location }}</p>
 			<p>{{ patient.doc.emergency_contact }}</p>
 			
 			<div class="alert" ng-show="patient.doc.changed()" style="position: fixed; top: 0; right: 0; z-index: 10000;">There are unsaved changes</div>
-		</td>
+		</div><!-- /col -->
 		
-		<td style="width: 25%; padding: 0px; ">
+		<div class="col-xs-3" style="padding-right: 0px; ">
 			<textarea ng-model="patient.doc.one_liner" class="hidden-print xform-control" autosave-patient="patient" ></textarea>
 			<div class="visible-print-block">{{ patient.doc.one_liner }}</div>
 			
-		</td>
-		<td style="width: 25%; padding: 0px; ">
+		</div><!-- /col -->
+		
+		<div class="col-xs-3" style="padding-right: 0px; ">
 			<textarea ng-model="patient.doc.interval_events" class="hidden-print xform-control" autosave-patient="patient" ></textarea>
 			<div class="visible-print-block">{{ patient.doc.interval_events }}</div>
-			
-		</td>
-		<td style="width: 25%; padding: 0px; " ng-dblclick="checklistExpanded = true">
-			<div ng-hide="checklistExpanded">
+		</div><!-- /col -->
+		
+		<div class="col-xs-3" xstyle="padding: 3px; " ng-dblclick="checklistExpanded = true">
+			<div ng-hide="checklistExpanded || patient.doc.checklist == undefined">
 				<div ng-include="'patients/_checklist_compact.html'"></div>
 			</div>
-			<div ng-show="checklistExpanded">
-				<textarea ng-model="patient.doc.checklist" class="hidden-print" ng-blur="checklistExpanded = false" autosave-patient="patient" ></textarea>
+			<div ng-show="checklistExpanded || patient.doc.checklist == undefined">
+				<textarea ng-model="patient.doc.checklist" class="hidden-print" ng-blur="checklistExpanded = false" autosave-patient="patient" placeholder="type..."></textarea>
 				<div class="visible-print-block">{{ patient.doc.checklist }}</div>
 			</div>
 			
-		</td>
-	</tr>
+		</div><!-- /col -->
+	</div>
 	<style type="text/css" media="screen">
 		#covering-table textarea {
 			width: 100%; 
@@ -69,6 +71,17 @@
 			background-color: transparent;
 			height: 120px;
 		}
+		
+		#covering-table > .row {
+			border-bottom: #ccc 1px solid;
+			padding-bottom: 6px;
+			padding-top: 6px;
+		}
+		
+		#covering-table > .row.active {
+			background-color: whitesmoke;
+		}
+		
 		.visible-print-block {
 			font-size: 8px;
 		    display: block;
@@ -78,6 +91,6 @@
 		    word-wrap: break-word;
 		}
 	</style>
-</table>
+</div>
 
 <a href="#/patients/new">New Patient</a>

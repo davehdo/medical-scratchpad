@@ -187,6 +187,8 @@ controllers.controller("PatientsEditController", ["$scope", "$routeParams", "$lo
 	$scope.cohorts = Cohort.all( (cohorts) ->
 		Cohort.active ||= cohorts[0]
 		$scope.patient.service_names = Cohort.active.service_names
+		$scope.service_name_options = _.uniq(_.flatten(_.map( cohorts, (c) -> c.service_names )))
+		
 	)
 			
 	$scope.submitForm = () ->

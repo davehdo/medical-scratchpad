@@ -24,13 +24,19 @@ models.factory('Patient', ["$resource", "Model", "Doc", ($resource, Model, Doc) 
 			)
 	
 	
-	Patient.prototype.firstOrCreateDoc = () ->	
+	Patient.prototype.firstOrCreateDoc = (onSuccess, onError) ->	
 		if !@doc # if no active document assigned:
 			if @doc_ids and @doc_ids.length > 0
-				@doc = Doc.get({id: @doc_ids[0]}, (d) -> d.storePriorValues() ) # use get instead of find here because we want the most up-to-date
+				# use get instead of find here because we want the most up-to-date
+				@doc = Doc.get({id: @doc_ids[0]}, (d) -> 
+					d.storePriorValues() 
+					onSuccess(d) if onSuccess
+				, onError) 
 			else
 				@doc = new Doc({one_liner: "New"})
 				@doc.storePriorValues()
+				onSuccess(@doc) if onSuccess
+				
 			
 	Patient.prototype.getLocation = () ->
 		"#{@body["Loc-unit"]} #{@body["Loc_Room_bed"]}"

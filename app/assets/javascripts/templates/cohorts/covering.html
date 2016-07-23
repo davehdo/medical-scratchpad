@@ -32,7 +32,7 @@
 		<th>Checklist/Guidance</th>
 	</tr>
 	<tr ng-class="isActive(patient) ? 'active' : ''" ng-repeat="patient in patients" ng-click="activate(patient)">
-		<td>
+		<td style="width: 25%;">
 			<a class="pull-right" href="/#/patients/{{ patient.id }}/edit"><i class="fa fa-pencil"></i></a>
 			<p>{{ patient.name }} </p>
 			<p>{{ patient.location }}</p>
@@ -41,17 +41,17 @@
 			<div class="alert" ng-show="patient.doc.changed()" style="position: fixed; top: 0; right: 0; z-index: 10000;">There are unsaved changes</div>
 		</td>
 		
-		<td style="padding: 0px; ">
+		<td style="width: 25%; padding: 0px; ">
 			<textarea ng-model="patient.doc.one_liner" class="hidden-print xform-control" autosave-patient="patient" ></textarea>
 			<div class="visible-print-block">{{ patient.doc.one_liner }}</div>
 			
 		</td>
-		<td style="padding: 0px; ">
+		<td style="width: 25%; padding: 0px; ">
 			<textarea ng-model="patient.doc.interval_events" class="hidden-print xform-control" autosave-patient="patient" ></textarea>
 			<div class="visible-print-block">{{ patient.doc.interval_events }}</div>
 			
 		</td>
-		<td style="padding: 0px; " ng-dblclick="checklistExpanded = true">
+		<td style="width: 25%; padding: 0px; " ng-dblclick="checklistExpanded = true">
 			<div ng-hide="checklistExpanded">
 				<div ng-include="'patients/_checklist_compact.html'"></div>
 			</div>
@@ -67,7 +67,7 @@
 			width: 100%; 
 			border: 0px;
 			background-color: transparent;
-			height: 100px;
+			height: 120px;
 		}
 		.visible-print-block {
 			font-size: 8px;

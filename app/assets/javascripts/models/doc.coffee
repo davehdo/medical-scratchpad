@@ -63,9 +63,9 @@ models.factory('Doc', ["$resource", "Model", ($resource, Model) ->
 			if _.startsWith(v, "[x]")
 				checked = true
 				text = _.replace( v, /^\[x\]\s*/, "")
-			else if _.startsWith(v, "[]")
+			else if _.startsWith(v, "[]") or _.startsWith(v, "[ ]")
 				checked = false
-				text = _.replace( v, /^\[]\s*/, "")
+				text = _.replace( v, /^\[\s?]\s*/, "")
 			else
 				checked = undefined
 				text = "#{v}"
@@ -77,7 +77,7 @@ models.factory('Doc', ["$resource", "Model", ($resource, Model) ->
 			if v.checked == true
 				checked = "[x] "
 			else if v.checked == false
-				checked = "[] "
+				checked = "[ ] "
 			else
 				checked = ""
 				
